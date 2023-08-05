@@ -1,0 +1,29 @@
+{
+    "name": "WhiteBoard",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "tauri": "tauri"
+    },
+    "dependencies": {
+        "@simonwep/pickr": "1.8.2",
+        "@tauri-apps/api": "1.4.0",
+        "@types/fabric": "5.3.3",
+        "fabric": "5.3.0",
+        "scss": "0.2.4",
+        "tauri-plugin-window-state-api": "github:tauri-apps/tauri-plugin-window-state#v1"
+    },
+    "devDependencies": {
+        "@tauri-apps/cli": "1.4.0",
+        "@total-typescript/ts-reset": "^0.4.2",
+        "@typescript-eslint/eslint-plugin": "6.1.0",
+        "@typescript-eslint/parser": "6.1.0",
+        "eslint": "8.45.0",
+        "typescript": "5.0.2",
+        "vite": "4.4.4"
+    }
+}

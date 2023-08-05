@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/Index.ts"></script>
+    <title>WhiteBoard</title>
+</head>
+
+<body>
+    <header id="AcctionBoton" layer="1" style="--layer:1;" data-tauri-drag-region>
+        <div>
+            <button>
+                <img src="/public/TitleBar/Hide_14x14.png" alt="minimize" width="14px" height="14px" />
+            </button>
+            <button>
+                <img src="/public/TitleBar/Maximize_20x20.png" alt="maximize" width="20px" height="20px" />
+            </button>
+            <button>
+                <img src="/public/TitleBar/Close_14x14.png" alt="close" width="14px" height="14px" />
+            </button>
+        </div>
+    </header>
+    <footer id="ToolBar" layer="1" style="--layer:1;">
+        <button id="Pencil">
+            <div id="PencilMenu">
+                <div class="circle" style="--bgColor: black; --width: 24px;"></div>
+                <div class="size">
+                    <input type="range" style="--bgColor: black" min="15" value="20" max="40" />
+                </div>
+                <div class="colors">
+                    <div class="circle" style="--bgColor: black;"></div>
+                    <div class="circle" style="--bgColor: red;"></div>
+                    <div class="circle" style="--bgColor: orange;"></div>
+                    <div class="circle" style="--bgColor: green;"></div>
+                    <div class="circle" style="--bgColor: yellow;"></div>
+                    <div class="circle" style="--bgColor: gray;"></div>
+                    <div id="ColorPicker" style="--bgColor: black;"></div>
+                </div>
+            </div>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-29.3 -29.3 351.63 351.63" xml:space="preserve" width="64px" height="64px" fill="#FFFFFF"
+                stroke="#FFFFFF" transform="matrix(1, 0, 0, -1, 0, 0)rotate(0)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="7.618779999999999"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <rect x="138.356" y="0" style="fill:#312341;" width="59.83" height="141.416"></rect>
+                        <rect x="94.844" y="0" style="fill:#312341;" width="32.634" height="141.416"></rect>
+                        <polygon style="fill:#312341;" points="159.204,255.636 133.825,255.636 146.515,293.03 ">
+                        </polygon>
+                        <polygon style="fill:#312341;"
+                            points="161.586,244.758 198.186,152.294 94.844,152.294 131.443,244.758 "></polygon>
+                    </g>
+                </g>
+            </svg>
+        </button>
+        <button>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-29.3 -29.3 351.63 351.63" xml:space="preserve" width="64px" height="64px" fill="#FFFFFF"
+                stroke="#FFFFFF" transform="matrix(1, 0, 0, -1, 0, 0)rotate(0)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="7.618779999999999"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <rect x="138.356" y="0" style="fill:#312341;" width="59.83" height="141.416"></rect>
+                        <rect x="94.844" y="0" style="fill:#312341;" width="32.634" height="141.416"></rect>
+                        <polygon style="fill:#312341;" points="159.204,255.636 133.825,255.636 146.515,293.03 ">
+                        </polygon>
+                        <polygon style="fill:#312341;"
+                            points="161.586,244.758 198.186,152.294 94.844,152.294 131.443,244.758 "></polygon>
+                    </g>
+                </g>
+            </svg>
+        </button>
+        <button>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-29.3 -29.3 351.63 351.63" xml:space="preserve" width="64px" height="64px" fill="#FFFFFF"
+                stroke="#FFFFFF" transform="matrix(1, 0, 0, -1, 0, 0)rotate(0)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="7.618779999999999"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <rect x="138.356" y="0" style="fill:#312341;" width="59.83" height="141.416"></rect>
+                        <rect x="94.844" y="0" style="fill:#312341;" width="32.634" height="141.416"></rect>
+                        <polygon style="fill:#312341;" points="159.204,255.636 133.825,255.636 146.515,293.03 ">
+                        </polygon>
+                        <polygon style="fill:#312341;"
+                            points="161.586,244.758 198.186,152.294 94.844,152.294 131.443,244.758 "></polygon>
+                    </g>
+                </g>
+            </svg>
+        </button>
+        <button>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-29.3 -29.3 351.63 351.63" xml:space="preserve" width="64px" height="64px" fill="#FFFFFF"
+                stroke="#FFFFFF" transform="matrix(1, 0, 0, -1, 0, 0)rotate(0)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="7.618779999999999"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <rect x="138.356" y="0" style="fill:#312341;" width="59.83" height="141.416"></rect>
+                        <rect x="94.844" y="0" style="fill:#312341;" width="32.634" height="141.416"></rect>
+                        <polygon style="fill:#312341;" points="159.204,255.636 133.825,255.636 146.515,293.03 ">
+                        </polygon>
+                        <polygon style="fill:#312341;"
+                            points="161.586,244.758 198.186,152.294 94.844,152.294 131.443,244.758 "></polygon>
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </footer>
+    <canvas id="Whiteboard" layer="0" style="--layer:0;"> </canvas>
+</body>
+
+</html>

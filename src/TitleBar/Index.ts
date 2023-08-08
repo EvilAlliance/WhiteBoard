@@ -1,19 +1,24 @@
 import { appWindow } from '@tauri-apps/api/window';
-import { $, $$, EventListener } from './../Utils';
-import { MaxIMG, MinIMG, TiltleBarId } from './../Constantes/Index';
+import { $, $$, EventListener, isHTMLElement } from './../Utils';
+import { AcctionBottonVar, TiltleBarId } from './../Constantes/Index';
 import { saveWindowState, StateFlags } from 'tauri-plugin-window-state-api';
 
 export async function initTitleBar() {
     const isMax = await appWindow.isMaximized();
     const TitleBar = $(TiltleBarId);
     if (TitleBar) {
-        const MinMax = $$('img', TitleBar)[1];
-        if (MinMax instanceof HTMLImageElement) MinMax.src = isMax ? MaxIMG : MinIMG;
+        const Max = $$('img', TitleBar)[1];
+        const Min = $$('img', TitleBar)[2];
+        if (!isHTMLElement(Min)) return;
+        if (!isHTMLElement(Max)) return;
+        Min.style.setProperty(AcctionBottonVar, isMax ? 'unset' : 'none');
+        Max.style.setProperty(AcctionBottonVar, isMax ? 'none' : 'unset');
 
         const button = $$('button', TitleBar);
-        if (button[0]) EventListener(button[0], ['click'], minimize);
-        if (button[1]) EventListener(button[1], ['click'], MaximizeMinimize);
-        if (button[2]) EventListener(button[2], ['click'], close);
+        if (button[0]) EventListener(button[0], ['click', 'touchend'], minimize);
+        if (button[1]) EventListener(button[1], ['click', 'touchend'], MaximizeMinimize);
+        if (button[2]) EventListener(button[2], ['click', 'touchend'], MaximizeMinimize);
+        if (button[3]) EventListener(button[3], ['click', 'touchend'], close);
     }
 }
 
@@ -27,8 +32,12 @@ async function MaximizeMinimize() {
     const isMax = await appWindow.isMaximized();
     const TitleBar = $(TiltleBarId);
     if (TitleBar) {
-        const MinMax = $$('img', TitleBar)[1];
-        if (MinMax instanceof HTMLImageElement) MinMax.src = isMax ? MaxIMG : MinIMG;
+        const Max = $$('img', TitleBar)[1];
+        const Min = $$('img', TitleBar)[2];
+        if (!isHTMLElement(Min)) return;
+        if (!isHTMLElement(Max)) return;
+        Min.style.setProperty(AcctionBottonVar, isMax ? 'unset' : 'none');
+        Max.style.setProperty(AcctionBottonVar, isMax ? 'none' : 'unset');
     }
 }
 

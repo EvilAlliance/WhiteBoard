@@ -44,7 +44,7 @@ body {
     position: absolute;
 }
 
-header#AcctionBoton {
+header#AcctionBotton {
     $height: 1.9em;
     & {
         display: flex;
@@ -72,6 +72,7 @@ header#AcctionBoton {
             }
             > img {
                 &{
+                    display: var(--acctionbotton);
                     filter: brightness(0) invert(0.3);
                 }
             }

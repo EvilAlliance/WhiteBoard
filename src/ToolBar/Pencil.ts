@@ -1,18 +1,19 @@
 import { $, $$, EventListener, isHTMLElement } from './../Utils';
 import { GenerateCursor } from './../Canvas/Cursor';
 import { Canvas } from './../Canvas/Index';
-import { BackgroudColorVar, ColorPickerAClass, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize, ShowMenuClass, WidthVar } from '../Constantes/Index';
+import { BackgroudColorVar, ColorPickerAClass, PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize, ShowMenuClass, WidthVar } from '../Constantes/Index';
 
 export function initPencilMenu() {
-    const Pencil = $(PencilMenuId);
+    const Pencil = $(PencilButtonId);
     if (Pencil)
-        EventListener(Pencil, ['click'], showPenColor)
+        EventListener(Pencil, ['click', 'touchend'], showPenColor)
     const circlecolors = $$(PencilMenuSampleColor);
     for (const circle of circlecolors) {
-        EventListener(circle, ['click'], CirleChangeColor);
+        EventListener(circle, ['click', 'touchend'], CirleChangeColor);
     }
     const inputRange = $(PencilMenuSize);
     if (!inputRange) return;
+    console.log(inputRange);
     EventListener(inputRange, ['input'], updateSizeBrush);
 }
 

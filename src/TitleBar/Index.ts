@@ -17,7 +17,6 @@ export async function initTitleBar() {
         const button = $$('button', TitleBar);
         if (button[0]) EventListener(button[0], ['click', 'touchend'], minimize);
         if (button[1]) EventListener(button[1], ['click', 'touchend'], MaximizeMinimize);
-        if (button[2]) EventListener(button[2], ['click', 'touchend'], MaximizeMinimize);
         if (button[3]) EventListener(button[3], ['click', 'touchend'], close);
     }
 }

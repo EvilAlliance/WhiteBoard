@@ -1,7 +1,9 @@
 import { $, $$, EventListener, isHTMLElement } from './../Utils';
 import { GenerateCursor } from './../Canvas/Cursor';
 import { Canvas } from './../Canvas/Index';
-import { BackgroudColorVar, ColorPickerAClass, PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize, ShowMenuClass, WidthVar } from '../Constantes/Index';
+import { ColorPickerAClass, ShowMenuClass } from '../Constantes/Index';
+import { PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize } from '../Constantes/JSPath';
+import { BackgroudColorVar, WidthVar } from '../Constantes/CSSVar';
 
 export function initPencilMenu() {
     const Pencil = $(PencilButtonId);

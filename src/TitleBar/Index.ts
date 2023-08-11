@@ -1,7 +1,8 @@
 import { appWindow } from '@tauri-apps/api/window';
 import { $, $$, EventListener, isHTMLElement } from './../Utils';
-import { AcctionBottonVar, TiltleBarId } from './../Constantes/Index';
 import { saveWindowState, StateFlags } from 'tauri-plugin-window-state-api';
+import { TiltleBarId } from '../Constantes/JSPath';
+import { AcctionBottonVar } from '../Constantes/CSSVar';
 
 export async function initTitleBar() {
     const isMax = await appWindow.isMaximized();

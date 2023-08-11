@@ -4,7 +4,9 @@ import { $, $$, EventListener } from './Utils';
 import { initCanvas, updateCanvas } from './Canvas/Index';
 import { createColorPicker } from './ColorPicker';
 import { initPencilMenu } from './ToolBar/Pencil';
-import { FabricUpperCanvasClass, FirstLayerAttribute, Layer, PencilMenuId, ShowMenuClass } from './Constantes/Index';
+import { FirstLayerAttribute, ShowMenuClass } from './Constantes/Index';
+import { FabricUpperCanvasClass, PencilMenuId } from './Constantes/JSPath';
+import { Layer } from './Constantes/CSSVar';
 
 EventListener(window, ['load'], init);
 EventListener(window, ['resize'], updateWindow);

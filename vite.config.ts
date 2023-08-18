@@ -22,6 +22,8 @@ export default defineConfig(async () => ({
         sourcemap: !!process.env.TAURI_DEBUG,
     },
     test: {
-        environment: "jsdom"
+        include: [
+            "./test/**/*.test.ts"
+        ]
     }
 }));

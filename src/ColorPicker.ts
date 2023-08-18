@@ -3,10 +3,10 @@ import '@simonwep/pickr/dist/themes/nano.min.css';
 import { isHTMLElement } from './Utils';
 import { $ } from './Utils';
 import { ColorPickerUpdateColorCircle, changeColor } from './ToolBar/Pencil';
-import { ColorPickerAClass, ColorPickerPosition, ColorPickerTheme } from './Constantes/Index';
+import { ColorPickerAClass, ColorPickerBId, ColorPickerPosition, ColorPickerTheme } from './Constantes/Index';
 import { RGB } from './Types/Index';
 import { BackgroudColorVar } from './Constantes/CSSVar';
-import { ColorPickerBId, PencilMenuId } from './Constantes/JSPath';
+import { PencilMenuId } from './Constantes/JSPath';
 
 export let ColorPicker: Pickr;
 

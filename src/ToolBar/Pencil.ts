@@ -8,14 +8,13 @@ import { BackgroudColorVar, WidthVar } from '../Constantes/CSSVar';
 export function initPencilMenu() {
     const Pencil = $(PencilButtonId);
     if (Pencil)
-        EventListener(Pencil, ['click', 'touchend'], showPenColor)
+        EventListener(Pencil, ['click', 'touchend'], showPenColor);
     const circlecolors = $$(PencilMenuSampleColor);
     for (const circle of circlecolors) {
         EventListener(circle, ['click', 'touchend'], CirleChangeColor);
     }
     const inputRange = $(PencilMenuSize);
     if (!inputRange) return;
-    console.log(inputRange);
     EventListener(inputRange, ['input'], updateSizeBrush);
 }
 
@@ -46,10 +45,12 @@ function updateSizeBrush(this: HTMLInputElement) {
     GenerateCursor(Canvas);
     if (max < 128 && size === max) {
         this.max = max + 1 + '';
+        this.value = size + 1 + '';
         this.min = min + 1 + '';
     }
     if (min > 1 && size === min) {
         this.max = max - 1 + '';
+        this.value = size - 1 + '';
         this.min = min - 1 + '';
     }
 }

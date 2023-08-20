@@ -5,6 +5,8 @@ import { ColorPickerAClass, ShowMenuClass } from '../Constantes/Index';
 import { PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize } from '../Constantes/JSPath';
 import { BackgroudColorVar, WidthVar } from '../Constantes/CSSVar';
 
+let Interval: NodeJS.Timeout;
+
 export function initPencilMenu() {
     const Pencil = $(PencilButtonId);
     if (Pencil)
@@ -15,7 +17,8 @@ export function initPencilMenu() {
     }
     const inputRange = $(PencilMenuSize);
     if (!inputRange) return;
-    EventListener(inputRange, ['input'], updateSizeBrush);
+    EventListener(inputRange, ['input', 'mousedown'], updateSize);
+    EventListener(inputRange, ['mouseup'], deleteInterval);
 }
 
 function showPenColor(e: Event) {
@@ -33,26 +36,50 @@ function CirleChangeColor(this: HTMLElement) {
     UpdateColorCircle(this);
 }
 
-function updateSizeBrush(this: HTMLInputElement) {
+function updateSize(this: HTMLInputElement) {
     const size = parseInt(this.value);
     const min = parseInt(this.min);
     const max = parseInt(this.max);
+    updateSizeBrush(size);
+    if (max < 128 && size === max) Interval = setInterval(increaseSizeInterval, 30, this);
+    if (min > 1 && size === min) Interval = setInterval(decreaseSizeInterval, 30, this);
+}
+
+function updateSizeBrush(size: number) {
     const circlePreview = $(PencilMenuPeview);
     if (!circlePreview) return;
     if (!isHTMLElement(circlePreview)) return;
     Canvas.freeDrawingBrush.width = size;
     circlePreview.style.setProperty(WidthVar, size + 4 + 'px');
     GenerateCursor(Canvas);
-    if (max < 128 && size === max) {
-        this.max = max + 1 + '';
-        this.value = size + 1 + '';
-        this.min = min + 1 + '';
+}
+
+function increaseSizeInterval(El: HTMLInputElement) {
+    const size = parseInt(El.value);
+    const min = parseInt(El.min);
+    const max = parseInt(El.max);
+    if (max > 128 || size !== max) {
+        clearInterval(Interval);
+        return;
     }
-    if (min > 1 && size === min) {
-        this.max = max - 1 + '';
-        this.value = size - 1 + '';
-        this.min = min - 1 + '';
+    El.max = max + 1 + '';
+    El.value = size + 1 + '';
+    El.min = min + 1 + '';
+    updateSizeBrush(size);
+}
+
+function decreaseSizeInterval(El: HTMLInputElement) {
+    const size = parseInt(El.value);
+    const min = parseInt(El.min);
+    const max = parseInt(El.max);
+    if (min < 2 || size !== min) {
+        clearInterval(Interval);
+        return;
     }
+    El.max = max - 1 + '';
+    El.min = min - 1 + '';
+    El.value = size - 1 + '';
+    updateSizeBrush(size);
 }
 
 export function changeColor(RGBColor: string) {
@@ -113,4 +140,8 @@ export function UpdateColorCircle(Node: HTMLElement) {
     const firstCircle = Circle[0];
     if (!isHTMLElement(firstCircle)) return;
     firstCircle.style.setProperty(BackgroudColorVar, RGBColor);
+}
+
+function deleteInterval() {
+    clearInterval(Interval);
 }

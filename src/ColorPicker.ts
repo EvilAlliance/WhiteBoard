@@ -38,7 +38,9 @@ export function createColorPicker() {
     if (!isHTMLElement(entryButton)) return;
     entryButton.style.setProperty(BackgroudColorVar, defaultColor);
 
-    ColorPicker.on('save', ColorPickerChangeColor);
+    ColorPicker
+        .on('save', ColorPickerSavedColor)
+        .on('change', ColorPickerChangeColor);
 
     /*ColorPicker.on('init', instance => {
         console.log('Event: "init"', instance);
@@ -61,10 +63,18 @@ export function createColorPicker() {
     });*/
 }
 
-function ColorPickerChangeColor() {
+function ColorPickerSavedColor() {
     const RGBColor = getRBG();
     changeColor(RGBColor);
     ColorPickerUpdateColorCircle(RGBColor);
+}
+
+function ColorPickerChangeColor() {
+    const RGBColor = getRBG();
+    const Rectangule = $(ColorPickerAClass);
+    if (!Rectangule) return;
+    if (!isHTMLElement(Rectangule)) return;
+    Rectangule.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
 function getRBG(): RGB {

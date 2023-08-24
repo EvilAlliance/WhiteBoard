@@ -15,3 +15,14 @@ export function EventListener(Element: Element | Window, Events: string[], fn: E
 export function isHTMLElement(node: Node): node is HTMLElement {
     return node instanceof HTMLElement;
 }
+
+let tapedTwice = false;
+
+export function doubletap(Node: HTMLElement, cb: Function) {
+    if (!tapedTwice) {
+        tapedTwice = true;
+        setTimeout(function() { tapedTwice = false; }, 300);
+        return false;
+    }
+    cb(Node);
+}

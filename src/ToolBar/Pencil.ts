@@ -1,9 +1,10 @@
-import { $, $$, EventListener, isHTMLElement } from './../Utils';
+import { $, $$, EventListener, doubletap, isHTMLElement } from './../Utils';
 import { GenerateCursor } from './../Canvas/Cursor';
 import { Canvas } from './../Canvas/Index';
 import { ColorPickerAClass, ShowMenuClass } from '../Constantes/Index';
 import { PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize } from '../Constantes/JSPath';
 import { BackgroudColorVar, WidthVar } from '../Constantes/CSSVar';
+import { ColorPicker } from '../ColorPicker';
 
 let Interval: NodeJS.Timeout;
 
@@ -19,6 +20,12 @@ export function initPencilMenu() {
     if (!inputRange) return;
     EventListener(inputRange, ['input', 'mousedown'], updateSize);
     EventListener(inputRange, ['mouseup'], deleteInterval);
+
+    const Rectangule = $(ColorPickerAClass);
+    if (!Rectangule) return
+    // @ts-ignore
+    EventListener(Rectangule, ['dblclick'], changeSavedColor);
+    EventListener(Rectangule, ['touchend'], function(this: HTMLDivElement) { doubletap(this, changeSavedColor) });
 }
 
 function showPenColor(e: Event) {
@@ -85,11 +92,6 @@ function decreaseSizeInterval(El: HTMLInputElement) {
 export function changeColor(RGBColor: string) {
     Canvas.freeDrawingBrush.color = RGBColor;
 
-    const Rectangule = $(ColorPickerAClass);
-    if (!Rectangule) return;
-    if (!isHTMLElement(Rectangule)) return;
-    Rectangule.style.setProperty(BackgroudColorVar, RGBColor);
-
     const actualColorCircle = $(PencilMenuPeview);
     if (!actualColorCircle) return;
     if (!isHTMLElement(actualColorCircle)) return;
@@ -144,4 +146,11 @@ export function UpdateColorCircle(Node: HTMLElement) {
 
 function deleteInterval() {
     clearInterval(Interval);
+}
+
+function changeSavedColor(this: HTMLDivElement, Node?: HTMLDivElement) {
+    const RGBColor = (this ?? Node).style.getPropertyValue(BackgroudColorVar);
+    changeColor(RGBColor);
+    ColorPickerUpdateColorCircle(RGBColor);
+    ColorPicker.hide()
 }

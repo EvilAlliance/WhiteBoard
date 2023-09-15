@@ -10,17 +10,13 @@ export function initEraser() {
         EventListener(Eraser, ['click', 'touchend'], Erase);
 
     const inputRange = $(EraserMenuSize);
-    if (!inputRange) return;
     EventListener(inputRange, ['input', 'mousedown'], updateSize);
     EventListener(inputRange, ['mouseup'], deleteInterval);
 }
 
-function Erase(e: Event) {
+function Erase(e) {
     const EraserMenu = $(EraserMenuId);
-    if (!EraserMenu) return;
-    if (!e.target) return;
-    if (e.target instanceof HTMLElement)
-        if (e.target.closest(EraserMenuId)) return;
+    if (e.target.closest(EraserMenuId)) return;
     resetMenu();
     if (changeBrush(Brush.Eraser)) return;
     EraserMenu.classList.toggle(ShowMenuClass);

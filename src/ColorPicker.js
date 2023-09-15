@@ -1,19 +1,15 @@
 import Pickr from '@simonwep/pickr';
 import '@simonwep/pickr/dist/themes/nano.min.css';
-import { isHTMLElement } from './Utils';
 import { $ } from './Utils';
 import { ColorPickerUpdateColorCircle, changeColor } from './ToolBar/Pencil';
 import { ColorPickerAClass, ColorPickerBId, ColorPickerPosition, ColorPickerTheme } from './Constantes/Index';
-import { RGB } from './Types/Index';
 import { BackgroudColorVar } from './Constantes/CSSVar';
 import { PencilMenuId } from './Constantes/JSPath';
 
-let ColorPicker: Pickr;
+let ColorPicker;
 
 export function createColorPicker() {
     const SustituteEl = $(ColorPickerBId);
-    if (!SustituteEl) return;
-    if (!isHTMLElement(SustituteEl)) return;
     const defaultColor = SustituteEl.style.getPropertyValue(BackgroudColorVar);
     ColorPicker = Pickr.create({
         el: ColorPickerBId,
@@ -34,8 +30,6 @@ export function createColorPicker() {
         }
     });
     const entryButton = $(ColorPickerAClass);
-    if (!entryButton) return;
-    if (!isHTMLElement(entryButton)) return;
     entryButton.style.setProperty(BackgroudColorVar, defaultColor);
 
     ColorPicker
@@ -72,12 +66,10 @@ function ColorPickerSavedColor() {
 function ColorPickerChangeColor() {
     const RGBColor = getRBG();
     const Rectangule = $(ColorPickerAClass);
-    if (!Rectangule) return;
-    if (!isHTMLElement(Rectangule)) return;
     Rectangule.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
-function getRBG(): RGB {
+function getRBG() {
     const Color = ColorPicker.getColor().toRGBA();
     return `rgb(${Color[0]}, ${Color[1]}, ${Color[2]}, ${Color[3]})`;
 }

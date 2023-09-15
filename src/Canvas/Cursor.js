@@ -1,10 +1,7 @@
-import type { fabric as Tfabric } from 'fabric';
-
-export function GenerateCursor(Canvas: Tfabric.Canvas) {
+export function GenerateCursor(Canvas) {
     const w = Canvas.freeDrawingBrush.width / 2;
     const canv = document.createElement('canvas');
     const ctx = canv.getContext('2d');
-    if (!ctx) return;
 
     ctx.canvas.width = w * 2;
     ctx.canvas.height = w * 2;

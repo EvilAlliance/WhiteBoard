@@ -1,7 +1,7 @@
 import { changePencilBrushSize } from "../Canvas/Index";
 import { WidthVar } from "../Constantes/CSSVar";
 import { ShowMenuClass } from "../Constantes/Index";
-import { $$, isHTMLElement } from "../Utils";
+import { $$ } from "../Utils";
 
 export function resetMenu() {
     const ShowMenu = $$('.' + ShowMenuClass)
@@ -11,9 +11,9 @@ export function resetMenu() {
 
 }
 
-let Interval: NodeJS.Timeout;
+let Interval;
 
-export function updateSize(this: HTMLInputElement) {
+export function updateSize() {
     const size = parseInt(this.value);
     const min = parseInt(this.min);
     const max = parseInt(this.max);
@@ -22,14 +22,12 @@ export function updateSize(this: HTMLInputElement) {
     if (min > 1 && size === min) Interval = setInterval(decreaseSizeInterval, 30, this);
 }
 
-export function updateSizeBrush(size: number, circlePreview: ChildNode | null | undefined) {
-    if (!circlePreview) return;
-    if (!isHTMLElement(circlePreview)) return;
+export function updateSizeBrush(size, circlePreview) {
     changePencilBrushSize(size);
     circlePreview.style.setProperty(WidthVar, size + 4 + 'px');
 }
 
-export function increaseSizeInterval(El: HTMLInputElement) {
+export function increaseSizeInterval(El) {
     const size = parseInt(El.value);
     const min = parseInt(El.min);
     const max = parseInt(El.max);
@@ -43,7 +41,7 @@ export function increaseSizeInterval(El: HTMLInputElement) {
     updateSizeBrush(size, El.parentElement?.previousElementSibling);
 }
 
-export function decreaseSizeInterval(El: HTMLInputElement) {
+export function decreaseSizeInterval(El) {
     const size = parseInt(El.value);
     const min = parseInt(El.min);
     const max = parseInt(El.max);

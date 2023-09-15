@@ -185,6 +185,49 @@ footer#ToolBar > button#Pencil > div#PencilMenu > div.pcr-app {
   box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
   transform: translate(0, -50%);
 }
+footer#ToolBar > button#Eraser {
+  position: relative;
+}
+footer#ToolBar > button#Eraser > div#EraserMenu.open {
+  display: unset;
+}
+footer#ToolBar > button#Eraser > div#EraserMenu {
+  border-radius: 10px;
+  width: 3em;
+  height: 15em;
+  position: absolute;
+  bottom: 3.8em;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
+  background-color: #f6f6f6;
+  display: none;
+}
+footer#ToolBar > button#Eraser > div#EraserMenu > div.circle {
+  width: var(--width);
+  transform: translate(0, -50%);
+  top: 50%;
+  left: calc((var(--width) + 12px) * -1);
+  position: absolute;
+  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 2px solid #f6f6f6;
+  outline: 1px solid rgb(147, 131, 131);
+  background-color: var(--bgColor);
+}
+footer#ToolBar > button#Eraser > div#EraserMenu > div.size {
+  border-radius: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+footer#ToolBar > button#Eraser > div#EraserMenu > div.size input[type=range] {
+  -webkit-appearance: slider-vertical;
+  width: 100%;
+  accent-color: var(--bgColor);
+}
 footer#ToolBar > button > svg {
   height: 100%;
 }

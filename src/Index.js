@@ -17,28 +17,23 @@ EventListener(window, ['keydown'], doShortCut);
 EventListener(window, ['keyup'], undoShortCut);
 
 
-function UnderCanvas(e: Event) {
+function UnderCanvas(e) {
     if (e.target === $(FabricUpperCanvasClass)) {
         const FirstLayer = $$(FirstLayerAttribute);
         for (let i = 0; i < FirstLayer.length; i++) {
-            const Element = FirstLayer[i];
-            if (Element instanceof HTMLElement)
-                Element.style.setProperty(Layer, '-1');
+            FirstLayer[i].style.setProperty(Layer, '-1');
         }
         const Menu = $('.' + ShowMenuClass);
-        if (Menu && Menu.classList.contains(ShowMenuClass)) {
+        if (Menu && Menu.classList.contains(ShowMenuClass))
             Menu.classList.toggle(ShowMenuClass);
-        }
     }
 }
 
-function UpperCanvas(e: Event) {
+function UpperCanvas(e) {
     if (e.target === $(FabricUpperCanvasClass)) {
         const FirstLayer = $$(FirstLayerAttribute);
         for (let i = 0; i < FirstLayer.length; i++) {
-            const Element = FirstLayer[i];
-            if (Element instanceof HTMLElement)
-                Element.style.setProperty(Layer, '1');
+            FirstLayer[i].style.setProperty(Layer, '1');
         }
     }
 }
@@ -60,10 +55,10 @@ function saveState() {
     saveWindowState(StateFlags.ALL);
 }
 
-function doShortCut(e: Event) {
+function doShortCut(e) {
     console.log('do', e);
 }
 
-function undoShortCut(e: Event) {
+function undoShortCut(e) {
     console.log('undo', e);
 }

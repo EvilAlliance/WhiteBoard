@@ -1,14 +1,12 @@
 import { $, $$, EventListener, doubletap, isHTMLElement } from './../Utils';
-import { GenerateCursor } from './../Canvas/Cursor';
-import { Canvas } from './../Canvas/Index';
+import { Brush, changeBrush, changePencilBrushColor } from './../Canvas/Index';
 import { ColorPickerAClass, ShowMenuClass } from '../Constantes/Index';
 import { PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize } from '../Constantes/JSPath';
-import { BackgroudColorVar, WidthVar } from '../Constantes/CSSVar';
-import { ColorPicker } from '../ColorPicker';
+import { BackgroudColorVar } from '../Constantes/CSSVar';
+import { hideColorPicker } from '../ColorPicker';
+import { deleteInterval, resetMenu, updateSize } from './Utils';
 
-let Interval: NodeJS.Timeout;
-
-export function initPencilMenu() {
+export function initPencil() {
     const Pencil = $(PencilButtonId);
     if (Pencil)
         EventListener(Pencil, ['click', 'touchend'], showPenColor);
@@ -17,15 +15,15 @@ export function initPencilMenu() {
         EventListener(circle, ['click', 'touchend'], CirleChangeColor);
     }
     const inputRange = $(PencilMenuSize);
-    if (!inputRange) return;
+    if (!inputRange) return; updateSize
     EventListener(inputRange, ['input', 'mousedown'], updateSize);
     EventListener(inputRange, ['mouseup'], deleteInterval);
 
     const Rectangule = $(ColorPickerAClass);
-    if (!Rectangule) return
+    if (!Rectangule) return;
     // @ts-ignore
     EventListener(Rectangule, ['dblclick'], changeSavedColor);
-    EventListener(Rectangule, ['touchend'], function(this: HTMLDivElement) { doubletap(this, changeSavedColor) });
+    EventListener(Rectangule, ['touchend'], function(this: HTMLDivElement) { doubletap(this, changeSavedColor); });
 }
 
 function showPenColor(e: Event) {
@@ -34,6 +32,8 @@ function showPenColor(e: Event) {
     if (!e.target) return;
     if (e.target instanceof HTMLElement)
         if (e.target.closest(PencilMenuId)) return;
+    resetMenu();
+    if (changeBrush(Brush.Pencil)) return;
     PencilMenu.classList.toggle(ShowMenuClass);
 }
 
@@ -43,55 +43,8 @@ function CirleChangeColor(this: HTMLElement) {
     UpdateColorCircle(this);
 }
 
-function updateSize(this: HTMLInputElement) {
-    const size = parseInt(this.value);
-    const min = parseInt(this.min);
-    const max = parseInt(this.max);
-    updateSizeBrush(size);
-    if (max < 128 && size === max) Interval = setInterval(increaseSizeInterval, 30, this);
-    if (min > 1 && size === min) Interval = setInterval(decreaseSizeInterval, 30, this);
-}
-
-function updateSizeBrush(size: number) {
-    const circlePreview = $(PencilMenuPeview);
-    if (!circlePreview) return;
-    if (!isHTMLElement(circlePreview)) return;
-    Canvas.freeDrawingBrush.width = size;
-    circlePreview.style.setProperty(WidthVar, size + 4 + 'px');
-    GenerateCursor(Canvas);
-}
-
-function increaseSizeInterval(El: HTMLInputElement) {
-    const size = parseInt(El.value);
-    const min = parseInt(El.min);
-    const max = parseInt(El.max);
-    if (max > 128 || size !== max) {
-        clearInterval(Interval);
-        return;
-    }
-    El.max = max + 1 + '';
-    El.value = size + 1 + '';
-    El.min = min + 1 + '';
-    updateSizeBrush(size);
-}
-
-function decreaseSizeInterval(El: HTMLInputElement) {
-    const size = parseInt(El.value);
-    const min = parseInt(El.min);
-    const max = parseInt(El.max);
-    if (min < 2 || size !== min) {
-        clearInterval(Interval);
-        return;
-    }
-    El.max = max - 1 + '';
-    El.min = min - 1 + '';
-    El.value = size - 1 + '';
-    updateSizeBrush(size);
-}
-
 export function changeColor(RGBColor: string) {
-    Canvas.freeDrawingBrush.color = RGBColor;
-
+    changePencilBrushColor(RGBColor);
     const actualColorCircle = $(PencilMenuPeview);
     if (!actualColorCircle) return;
     if (!isHTMLElement(actualColorCircle)) return;
@@ -144,13 +97,9 @@ export function UpdateColorCircle(Node: HTMLElement) {
     firstCircle.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
-function deleteInterval() {
-    clearInterval(Interval);
-}
-
 function changeSavedColor(this: HTMLDivElement, Node?: HTMLDivElement) {
     const RGBColor = (this ?? Node).style.getPropertyValue(BackgroudColorVar);
     changeColor(RGBColor);
     ColorPickerUpdateColorCircle(RGBColor);
-    ColorPicker.hide()
+    hideColorPicker();
 }

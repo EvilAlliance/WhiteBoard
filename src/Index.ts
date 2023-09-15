@@ -3,15 +3,18 @@ import { initTitleBar } from './TitleBar/Index';
 import { $, $$, EventListener } from './Utils';
 import { initCanvas, updateCanvas } from './Canvas/Index';
 import { createColorPicker } from './ColorPicker';
-import { initPencilMenu } from './ToolBar/Pencil';
+import { initPencil } from './ToolBar/Pencil';
 import { FirstLayerAttribute, ShowMenuClass } from './Constantes/Index';
-import { FabricUpperCanvasClass, PencilMenuId } from './Constantes/JSPath';
+import { FabricUpperCanvasClass } from './Constantes/JSPath';
 import { Layer } from './Constantes/CSSVar';
+import { initEraser } from './ToolBar/Eraser';
 
 EventListener(window, ['load'], init);
 EventListener(window, ['resize'], updateWindow);
 EventListener(window, ['mousedown', 'touchstart'], UnderCanvas);
 EventListener(window, ['mouseup', 'touchleave', 'touchend'], UpperCanvas);
+EventListener(window, ['keydown'], doShortCut);
+EventListener(window, ['keyup'], undoShortCut);
 
 
 function UnderCanvas(e: Event) {
@@ -22,9 +25,9 @@ function UnderCanvas(e: Event) {
             if (Element instanceof HTMLElement)
                 Element.style.setProperty(Layer, '-1');
         }
-        const PencilMenu = $(PencilMenuId);
-        if (PencilMenu && PencilMenu.classList.contains(ShowMenuClass)) {
-            PencilMenu.classList.toggle(ShowMenuClass);
+        const Menu = $('.' + ShowMenuClass);
+        if (Menu && Menu.classList.contains(ShowMenuClass)) {
+            Menu.classList.toggle(ShowMenuClass);
         }
     }
 }
@@ -49,9 +52,18 @@ function init() {
     initTitleBar();
     initCanvas();
     createColorPicker();
-    initPencilMenu();
+    initPencil();
+    initEraser();
 }
 
 function saveState() {
     saveWindowState(StateFlags.ALL);
+}
+
+function doShortCut(e: Event) {
+    console.log('do', e);
+}
+
+function undoShortCut(e: Event) {
+    console.log('undo', e);
 }

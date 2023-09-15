@@ -8,7 +8,7 @@ import { RGB } from './Types/Index';
 import { BackgroudColorVar } from './Constantes/CSSVar';
 import { PencilMenuId } from './Constantes/JSPath';
 
-export let ColorPicker: Pickr;
+let ColorPicker: Pickr;
 
 export function createColorPicker() {
     const SustituteEl = $(ColorPickerBId);
@@ -80,4 +80,8 @@ function ColorPickerChangeColor() {
 function getRBG(): RGB {
     const Color = ColorPicker.getColor().toRGBA();
     return `rgb(${Color[0]}, ${Color[1]}, ${Color[2]}, ${Color[3]})`;
+}
+
+export function hideColorPicker() {
+    ColorPicker.hide();
 }

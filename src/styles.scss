@@ -235,6 +235,69 @@ footer#ToolBar{
                     }
             }
         }
+        &#Eraser{
+            &{
+                position: relative;
+            }
+            > div#EraserMenu.open{
+                display: unset;
+            }
+            > div#EraserMenu{
+                &{
+                    $width: 3em;
+                    $ratio: 5;
+
+                    border-radius: 10px;
+
+                    width: $width;
+                    height: $width*$ratio;
+
+                    position: absolute;
+                    bottom: $ToolBar+0.7em;
+                    left:50%;
+                    transform: translate(-50%);
+
+                    box-shadow: $shadow;
+                    background-color: $bgColor;
+
+                    display: none;
+                }
+                > div.circle{
+                    & {
+                        width: var(--width);
+
+                        transform: translate(0, -50%);
+                        top: 50%;
+                        left: calc((var(--width) + 12px) * -1);
+                        position: absolute;
+
+                        box-shadow: $shadow;
+
+                        aspect-ratio: 1/1;
+
+                        border-radius: 50%;
+                        border: 2px solid $bgColor;
+                        outline: 1px solid rgb(147 131 131);
+
+                        background-color: var(--bgColor);
+                    }
+                }
+                >div.size{
+                    & {
+                        border-radius: 10px;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding: 20px;
+                    }
+                    input[type="range"] {
+                        -webkit-appearance: slider-vertical;
+                        width: 100%;
+                        accent-color: var(--bgColor);
+                    }
+                }
+            }
+        }
         > svg{
             &{
                 height: 100%;

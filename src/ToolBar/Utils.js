@@ -6,7 +6,7 @@ import { $$ } from "../Utils";
 export function resetMenu() {
     const ShowMenu = $$('.' + ShowMenuClass)
     for (const Menu of ShowMenu) {
-        Menu.classList.toggle(ShowMenuClass);
+        Menu.classList.toggle('.' + ShowMenuClass);
     }
 
 }

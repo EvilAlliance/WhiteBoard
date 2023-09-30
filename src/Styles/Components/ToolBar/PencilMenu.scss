@@ -1,0 +1,69 @@
+@use './../../Utils' as u;
+
+footer#ToolBar>button>div.Menu#PencilMenu{
+    >div.colors{
+        grid-column:2/3;
+        border-radius: 0px 10px 10px 0px;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+
+        align-items: center;
+        justify-items: center;
+        > div.circle{ 
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            border: 2px solid u.$bgColor;
+            outline: 1px solid rgb(147 131 131);
+            background-color: var(--bgColor);
+            width: u.$circleMenu;
+        }
+        > div.pickr{
+            & {
+                $height: 34px;
+
+                height: $height;
+                aspect-ratio: 2/1;
+
+                border-radius: 10px;
+                border: 2px solid u.$bgColor;
+                outline: 1px solid rgb(147 131 131);
+
+                background-color: var(--bgColor);
+
+                grid-row: 4/5;
+                grid-column: 1/3;
+            }
+            > button{
+                &{
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: transparent;
+                    border-radius: inherit;
+                    position: static;
+                }
+                &:before {
+                    display: none;
+                }
+                &:after {
+                    display: none;
+                }
+                &:focus{
+                    box-shadow: unset;
+                }
+            }
+        }
+    }
+        > div.pcr-app{
+            $width: 14.25;
+            right: -($width + 0.7em) !important;
+            left: unset !important;
+            top: 50% !important;
+            height: min-content;
+            box-shadow: u.$shadow;
+            transform: translate(0, -50%);
+        }
+    }

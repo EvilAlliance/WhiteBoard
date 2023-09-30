@@ -1,0 +1,29 @@
+@use './../Utils' as u;
+@use './../reset';
+
+header#AcctionBotton {
+    display: flex;
+    justify-content:flex-end;
+    height: u.$heightTitleBar;
+    grid-row: 1;
+    top: 0;
+    width:100%;
+    > div{
+        display: flex;
+        border-radius: 0 0 0 10px;
+        box-shadow: u.$shadow;
+        background-color: u.$bgColor;
+        > button {
+            @include reset.button;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: u.$heightTitleBar;
+            aspect-ratio: 1;
+            > img {
+                display: var(--acctionbotton);
+                filter: brightness(0) invert(0.3);
+            }
+        }
+    }
+}

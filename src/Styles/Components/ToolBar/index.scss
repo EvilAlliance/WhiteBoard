@@ -1,0 +1,77 @@
+@use "sass:math";
+@use './../../reset' as reset;
+@use './../../Utils' as u;
+@use './PencilMenu.scss';
+@use './EraserMenu.scss';
+
+footer#ToolBar{
+    height: u.$ToolBarHeight;
+    width: max-content;
+
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: u.$shadow;
+
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+
+    background-color: u.$bgColor;
+    >:not(:last-child){
+        border-right: 1px solid #0000004a;
+    }
+    >button{
+        @include reset.button;
+        height: 100%;
+        >div.Menu.open{
+            display: grid !important;
+        }
+        >div.Menu{
+            position: relative;
+
+            border-radius: 10px;
+
+            width: u.$widthMenu;
+            aspect-ratio: 1/1.5;
+
+            position: absolute;
+            bottom: u.$ToolBarHeight+0.75rem;
+            left:50%;
+            transform: translate(-50%);
+
+            box-shadow: u.$shadow;
+            background-color: u.$bgColor;
+
+            display: none;
+            grid-template-columns: 33fr 66fr;
+            >div.circle{
+                aspect-ratio: 1/1;
+
+                border-radius: 50%;
+                border: 2px solid u.$bgColor;
+                width: var(--width);
+
+                transform: translate(0, -50%);
+                top: 50%;
+                left: calc((var(--width) + 1.12rem) * -1);
+                position: absolute;
+
+                box-shadow: u.$shadow;
+                outline: 1px solid rgb(147 131 131);
+                background-color: var(--bgColor);
+            }
+            >div.size{
+                grid-column: 1 / 2;
+                border-radius: 10px 0px 0px 10px;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+                input[type="range"] {
+                    -webkit-appearance: slider-vertical;
+                    width: 100%;
+                    accent-color: var(--bgColor);
+                }
+            }
+        }
+    }
+}

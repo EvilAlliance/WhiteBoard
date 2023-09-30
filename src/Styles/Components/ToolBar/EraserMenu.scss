@@ -1,0 +1,27 @@
+
+footer#ToolBar>button#Eraser>div.Menu#EraserMenu{
+    >div.Modes{
+        justify-items: center;
+        grid-gap: 1rem;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        height: 100%;
+        padding: 1rem;
+        border-radius: 0px 10px 10px 0px;
+        padding-block: 1.2rem;
+        >div.active{
+            border: 2px solid rgba(0, 0, 0, 0.5);
+        }
+        >div{
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+            font-weight:bold;
+            line-height:1px;
+        }
+    }
+}

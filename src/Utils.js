@@ -1,3 +1,6 @@
+/**
+ * Hola
+ * */
 export function $(selector, ParentNode = document) {
     return ParentNode.querySelector(selector);
 }

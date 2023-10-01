@@ -1,7 +1,7 @@
 @use './../Utils' as u;
 @use './../reset';
 
-header#AcctionBotton {
+header#AcctionButton {
     display: flex;
     justify-content:flex-end;
     height: u.$heightTitleBar;
@@ -21,7 +21,7 @@ header#AcctionBotton {
             height: u.$heightTitleBar;
             aspect-ratio: 1;
             > img {
-                display: var(--acctionbotton);
+                display: var(--acctionbutton);
                 filter: brightness(0) invert(0.3);
             }
         }

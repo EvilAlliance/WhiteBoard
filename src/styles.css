@@ -1,3 +1,180 @@
+header#AcctionButton {
+  display: flex;
+  justify-content: flex-end;
+  height: 2rem;
+  grid-row: 1;
+  top: 0;
+  width: 100%;
+}
+header#AcctionButton > div {
+  display: flex;
+  border-radius: 0 0 0 10px;
+  box-shadow: 0px 0px 12px 3px rgb(147, 131, 131);
+  background-color: #f6f6f6;
+}
+header#AcctionButton > div > button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  aspect-ratio: 1;
+}
+header#AcctionButton > div > button > img {
+  display: var(--acctionbutton);
+  filter: brightness(0) invert(0.3);
+}
+
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors {
+  grid-column: 2/3;
+  border-radius: 0px 10px 10px 0px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.circle {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 2px solid #f6f6f6;
+  outline: 1px solid rgb(147, 131, 131);
+  background-color: var(--bgColor);
+  width: 2.17rem;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.pickr {
+  height: 34px;
+  aspect-ratio: 2/1;
+  border-radius: 10px;
+  border: 2px solid #f6f6f6;
+  outline: 1px solid rgb(147, 131, 131);
+  background-color: var(--bgColor);
+  grid-row: 4/5;
+  grid-column: 1/3;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.pickr > button {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: inherit;
+  position: static;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.pickr > button:before {
+  display: none;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.pickr > button:after {
+  display: none;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.colors > div.pickr > button:focus {
+  box-shadow: unset;
+}
+footer#ToolBar > button > div.Menu#PencilMenu > div.pcr-app {
+  right: -14.95em !important;
+  left: unset !important;
+  top: 50% !important;
+  height: min-content;
+  box-shadow: 0px 0px 12px 3px rgb(147, 131, 131);
+  transform: translate(0, -50%);
+}
+
+footer#ToolBar > button#Eraser > div.Menu#EraserMenu > div.Modes {
+  justify-items: center;
+  grid-gap: 1rem;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0px 10px 10px 0px;
+  padding-block: 1.2rem;
+}
+footer#ToolBar > button#Eraser > div.Menu#EraserMenu > div.Modes > div.active {
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+footer#ToolBar > button#Eraser > div.Menu#EraserMenu > div.Modes > div {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1px;
+}
+
+footer#ToolBar {
+  height: 3.75rem;
+  width: max-content;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 0px 12px 3px rgb(147, 131, 131);
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #f6f6f6;
+}
+footer#ToolBar > :not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.2901960784);
+}
+footer#ToolBar > button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+}
+footer#ToolBar > button > div.Menu.open {
+  display: grid !important;
+}
+footer#ToolBar > button > div.Menu {
+  position: relative;
+  border-radius: 10px;
+  width: 10rem;
+  aspect-ratio: 1/1.5;
+  position: absolute;
+  bottom: 4.5rem;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 0px 0px 12px 3px rgb(147, 131, 131);
+  background-color: #f6f6f6;
+  display: none;
+  grid-template-columns: 33fr 66fr;
+}
+footer#ToolBar > button > div.Menu > div.circle {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 2px solid #f6f6f6;
+  width: var(--width);
+  transform: translate(0, -50%);
+  top: 50%;
+  left: calc((var(--width) + 1.12rem) * -1);
+  position: absolute;
+  box-shadow: 0px 0px 12px 3px rgb(147, 131, 131);
+  outline: 1px solid rgb(147, 131, 131);
+  background-color: var(--bgColor);
+}
+footer#ToolBar > button > div.Menu > div.size {
+  grid-column: 1/2;
+  border-radius: 10px 0px 0px 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+footer#ToolBar > button > div.Menu > div.size input[type=range] {
+  -webkit-appearance: slider-vertical;
+  width: 100%;
+  accent-color: var(--bgColor);
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -17,7 +194,6 @@
 }
 
 * {
-  outline: 1px solid red;
   margin: 0;
 }
 
@@ -34,202 +210,6 @@ body {
 [layer] {
   z-index: var(--layer);
   position: absolute;
-}
-
-header#AcctionBotton {
-  display: flex;
-  justify-content: flex-end;
-  height: 1.9em;
-  grid-row: 1;
-  top: 0;
-  width: 100%;
-}
-header#AcctionBotton > div {
-  display: flex;
-  border-radius: 0 0 0 10px;
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  background-color: #f6f6f6;
-}
-header#AcctionBotton > div > button {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 1.9em;
-  aspect-ratio: 1;
-}
-header#AcctionBotton > div > button > img {
-  display: var(--acctionbotton);
-  filter: brightness(0) invert(0.3);
-}
-
-footer#ToolBar {
-  height: 3.1em;
-  width: max-content;
-  border-radius: 10px 10px 0px 0px;
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
-  background-color: #f6f6f6;
-}
-footer#ToolBar > :not(:last-child) {
-  border-right: 1px solid rgba(0, 0, 0, 0.2901960784);
-}
-footer#ToolBar > button {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
-  height: 100%;
-}
-footer#ToolBar > button#Pencil {
-  position: relative;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu.open {
-  display: grid;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu {
-  border-radius: 10px;
-  width: 10em;
-  height: 15em;
-  position: absolute;
-  bottom: 3.8em;
-  left: 50%;
-  transform: translate(-50%);
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  background-color: #f6f6f6;
-  display: none;
-  grid-template-columns: 3.3333333333em 1fr;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu div.circle {
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: 2px solid #f6f6f6;
-  outline: 1px solid rgb(147, 131, 131);
-  background-color: var(--bgColor);
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.circle {
-  width: var(--width);
-  transform: translate(0, -50%);
-  top: 50%;
-  left: calc((var(--width) + 12px) * -1);
-  position: absolute;
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.size {
-  grid-column: 1/2;
-  border-radius: 10px 0px 0px 10px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.size input[type=range] {
-  -webkit-appearance: slider-vertical;
-  width: 100%;
-  accent-color: var(--bgColor);
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors {
-  grid-column: 2/3;
-  border-radius: 0px 10px 10px 0px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  align-items: center;
-  justify-items: center;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.circle {
-  width: 34px;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.pickr {
-  height: 34px;
-  aspect-ratio: 2/1;
-  border-radius: 10px;
-  border: 2px solid #f6f6f6;
-  outline: 1px solid rgb(147, 131, 131);
-  background-color: var(--bgColor);
-  grid-row: 4/5;
-  grid-column: 1/3;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.pickr > button {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border-radius: inherit;
-  position: static;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.pickr > button:before {
-  display: none;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.pickr > button:after {
-  display: none;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.colors > div.pickr > button:focus {
-  box-shadow: unset;
-}
-footer#ToolBar > button#Pencil > div#PencilMenu > div.pcr-app {
-  right: -14.95em !important;
-  left: unset !important;
-  top: 50% !important;
-  height: min-content;
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  transform: translate(0, -50%);
-}
-footer#ToolBar > button#Eraser {
-  position: relative;
-}
-footer#ToolBar > button#Eraser > div#EraserMenu.open {
-  display: unset;
-}
-footer#ToolBar > button#Eraser > div#EraserMenu {
-  border-radius: 10px;
-  width: 3em;
-  height: 15em;
-  position: absolute;
-  bottom: 3.8em;
-  left: 50%;
-  transform: translate(-50%);
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  background-color: #f6f6f6;
-  display: none;
-}
-footer#ToolBar > button#Eraser > div#EraserMenu > div.circle {
-  width: var(--width);
-  transform: translate(0, -50%);
-  top: 50%;
-  left: calc((var(--width) + 12px) * -1);
-  position: absolute;
-  box-shadow: 1px 0px 37px 8px rgb(147, 131, 131);
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: 2px solid #f6f6f6;
-  outline: 1px solid rgb(147, 131, 131);
-  background-color: var(--bgColor);
-}
-footer#ToolBar > button#Eraser > div#EraserMenu > div.size {
-  border-radius: 10px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-footer#ToolBar > button#Eraser > div#EraserMenu > div.size input[type=range] {
-  -webkit-appearance: slider-vertical;
-  width: 100%;
-  accent-color: var(--bgColor);
-}
-footer#ToolBar > button > svg {
-  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

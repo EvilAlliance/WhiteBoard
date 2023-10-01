@@ -1,4 +1,4 @@
-export const TiltleBarId = '#AcctionBotton';
+export const TiltleBarId = '#AcctionButton';
 export const FabricUpperCanvasClass = '.upper-canvas';
 
 export const PencilButtonId = '#Pencil';
@@ -11,3 +11,4 @@ export const EraserButtonId = '#Eraser';
 export const EraserMenuId = `${EraserButtonId}Menu`;
 export const EraserMenuPeview = `${EraserMenuId} > .circle`;
 export const EraserMenuSize = `${EraserMenuId} > .size > input[type="range"]`;
+export const EraserMenuOptions = `${EraserMenuId} > .Modes > div`;

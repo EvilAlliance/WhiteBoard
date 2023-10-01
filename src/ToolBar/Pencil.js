@@ -1,10 +1,10 @@
 import { $, $$, EventListener, doubletap } from './../Utils';
-import { Brush, changeBrush, changePencilBrushColor } from './../Canvas/Index';
-import { ColorPickerAClass, ShowMenuClass } from '../Constantes/Index';
+import { Brush, changePencilBrushColor } from './../Canvas/Index';
+import { ColorPickerAClass } from '../Constantes/Index';
 import { PencilButtonId, PencilMenuId, PencilMenuPeview, PencilMenuSampleColor, PencilMenuSize } from '../Constantes/JSPath';
 import { BackgroudColorVar } from '../Constantes/CSSVar';
 import { hideColorPicker } from '../ColorPicker';
-import { deleteInterval, resetMenu, updateSize } from './Utils';
+import { deleteInterval, showMenu, updateSize } from './Utils';
 
 export function initPencil() {
     const Pencil = $(PencilButtonId);
@@ -23,11 +23,7 @@ export function initPencil() {
 }
 
 function showPenColor(e) {
-    const PencilMenu = $(PencilMenuId);
-    if (e.target.closest(PencilMenuId)) return;
-    resetMenu();
-    if (changeBrush(Brush.Pencil)) return;
-    PencilMenu.classList.toggle(ShowMenuClass);
+    showMenu(e, PencilMenuId, Brush.Pencil);
 }
 
 function CirleChangeColor() {

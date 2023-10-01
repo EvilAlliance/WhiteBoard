@@ -1,14 +1,24 @@
-import { changePencilBrushSize } from "../Canvas/Index";
+import { changeBrush, changePencilBrushSize } from "../Canvas/Index";
 import { WidthVar } from "../Constantes/CSSVar";
 import { ShowMenuClass } from "../Constantes/Index";
-import { $$ } from "../Utils";
+import { $$, $ } from "../Utils";
 
 export function resetMenu() {
     const ShowMenu = $$('.' + ShowMenuClass)
     for (const Menu of ShowMenu) {
-        Menu.classList.toggle('.' + ShowMenuClass);
+        Menu.classList.toggle(ShowMenuClass);
     }
+}
 
+export function showMenu(e, MenuId, Brush) {
+    if (e.target.closest(MenuId)) return;
+    console.log(Brush)
+    if (changeBrush(Brush) || $('.' + ShowMenuClass)) {
+        resetMenu();
+        return;
+    }
+    const Menu = $(MenuId);
+    Menu.classList.toggle(ShowMenuClass);
 }
 
 let Interval;

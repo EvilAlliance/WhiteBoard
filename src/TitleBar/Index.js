@@ -2,14 +2,14 @@ import { appWindow } from '@tauri-apps/api/window';
 import { $, $$, EventListener } from './../Utils';
 import { saveWindowState, StateFlags } from 'tauri-plugin-window-state-api';
 import { TiltleBarId } from '../Constantes/JSPath';
-import { AcctionBottonVar } from '../Constantes/CSSVar';
+import { AcctionButtonVar } from '../Constantes/CSSVar';
 
 export async function initTitleBar() {
     const isMax = await appWindow.isMaximized();
     const TitleBar = $(TiltleBarId);
     const [_, Min, Max] = $$('img', TitleBar);
-    Min.style.setProperty(AcctionBottonVar, isMax ? 'unset' : 'none');
-    Max.style.setProperty(AcctionBottonVar, isMax ? 'none' : 'unset');
+    Min.style.setProperty(AcctionButtonVar, isMax ? 'unset' : 'none');
+    Max.style.setProperty(AcctionButtonVar, isMax ? 'none' : 'unset');
 
     const button = $$('button', TitleBar);
     EventListener(button[0], ['click', 'touchend'], minimize);
@@ -27,8 +27,8 @@ async function MaximizeMinimize() {
     const isMax = await appWindow.isMaximized();
     const TitleBar = $(TiltleBarId);
     const [_, Min, Max] = $$('img', TitleBar);
-    Min.style.setProperty(AcctionBottonVar, isMax ? 'unset' : 'none');
-    Max.style.setProperty(AcctionBottonVar, isMax ? 'none' : 'unset');
+    Min.style.setProperty(AcctionButtonVar, isMax ? 'unset' : 'none');
+    Max.style.setProperty(AcctionButtonVar, isMax ? 'none' : 'unset');
 }
 
 function close() {

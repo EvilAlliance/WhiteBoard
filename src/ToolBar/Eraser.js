@@ -1,4 +1,4 @@
-import { Brush, changeBrush } from '../Canvas/Index';
+import { Brush, Eraser, changeBrush, changeEraser } from '../Canvas/Index';
 import { EraserButtonId, EraserMenuId, EraserMenuOptions, EraserMenuSize } from '../Constantes/JSPath';
 import { $, $$, EventListener } from '../Utils';
 import { deleteInterval, showMenu, updateSize } from './Utils';
@@ -18,24 +18,23 @@ export function initEraser() {
 }
 
 function Erase(e) {
-    const options = [Brush.Eraser, Brush.EraserUndo, Brush.EraserAll];
-    showMenu(e, EraserMenuId, options[parseInt($(".Modes>.active").getAttribute("value"))]);
+    showMenu(e, EraserMenuId, Brush.Eraser);
 }
 
 function Do() {
-    changeBrush(Brush.Eraser);
+    changeEraser(Eraser.Do);
     $(".Modes>.active").classList.toggle("active");
     $$(".Modes>div")[0].classList.toggle("active");
 }
 
 function Undo() {
-    changeBrush(Brush.EraserUndo);
+    changeEraser(Eraser.Undo);
     $(".Modes>.active").classList.toggle("active");
     $$(".Modes>div")[1].classList.toggle("active");
 }
 
 function EraserAll() {
-    changeBrush(Brush.EraserAll);
+    changeEraser(Eraser.All);
     $(".Modes>.active").classList.toggle("active");
     $$(".Modes>div")[2].classList.toggle("active");
 }

@@ -8,6 +8,7 @@ import { FirstLayerAttribute, ShowMenuClass } from './Constantes/Index';
 import { FabricUpperCanvasClass } from './Constantes/JSPath';
 import { Layer } from './Constantes/CSSVar';
 import { initEraser } from './ToolBar/Eraser';
+import { initCursor } from './ToolBar/Cursor';
 
 EventListener(window, ['load'], init);
 EventListener(window, ['resize'], updateWindow);
@@ -49,6 +50,7 @@ function init() {
     createColorPicker();
     initPencil();
     initEraser();
+    initCursor();
 }
 
 function saveState() {

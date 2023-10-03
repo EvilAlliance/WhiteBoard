@@ -12,3 +12,5 @@ export const EraserMenuId = `${EraserButtonId}Menu`;
 export const EraserMenuPeview = `${EraserMenuId} > .circle`;
 export const EraserMenuSize = `${EraserMenuId} > .size > input[type="range"]`;
 export const EraserMenuOptions = `${EraserMenuId} > .Modes > div`;
+
+export const CursorButtonId = '#Cursor';

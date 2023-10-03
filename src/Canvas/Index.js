@@ -4,10 +4,15 @@ import { GenerateCursor } from './Cursor';
 import { CanvasWhiteboardIdWHash } from '../Constantes/Index';
 
 export const Brush = {
-    Eraser: 0,
-    EraserUndo: 1,
-    EraserAll: 2,
-    Pencil: 3,
+    Cursor: 0,
+    Eraser: 1,
+    Pencil: 2,
+}
+
+export const Eraser = {
+    Do: 0,
+    Undo: 1,
+    All: 2,
 }
 
 let Canvas;
@@ -51,12 +56,12 @@ export function initCanvas() {
 
 
 export function changePencilBrushSize(size) {
-    Canvas.freeDrawingBrush.width = size;
+    PencilBrush.width = size;
     GenerateCursor(Canvas);
 }
 
 export function changePencilBrushColor(RGBColor) {
-    Canvas.freeDrawingBrush.color = RGBColor;
+    PencilBrush.color = RGBColor;
 }
 
 function EraseAll({ targets }) {
@@ -67,29 +72,21 @@ function EraseAll({ targets }) {
 
 export function changeBrush(x) {
     switch (x) {
+        case Brush.Cursor: {
+            if (!Canvas.isDrawingMode) return false;
+            Canvas.isDrawingMode = false;
+            break;
+        }
         case Brush.Eraser: {
-            if (Canvas.freeDrawingBrush == EraserBrush && !EraserBrush.inverted) return false;
-            EraserAll = false;
-            EraserBrush.inverted = false;
-            Canvas.freeDrawingBrush = EraserBrush;
-            break;
-        };
-        case Brush.EraserUndo: {
-            if (Canvas.freeDrawingBrush == EraserBrush && EraserBrush.inverted) return false;
-            EraserAll = false;
-            EraserBrush.inverted = true;
-            Canvas.freeDrawingBrush = EraserBrush;
-            break;
-        };
-        case Brush.EraserAll: {
-            if (Canvas.freeDrawingBrush == EraserBrush && EraserAll) return false;
-            EraserAll = true;
-            EraserBrush.inverted = false;
+            if (Canvas.isDrawingMode && Canvas.freeDrawingBrush == EraserBrush) return false;
+            Canvas.isDrawingMode = true;
+            console.trace();
             Canvas.freeDrawingBrush = EraserBrush;
             break;
         };
         case Brush.Pencil: {
-            if (Canvas.freeDrawingBrush == PencilBrush) return false;
+            if (Canvas.isDrawingMode && Canvas.freeDrawingBrush == PencilBrush) return false;
+            Canvas.isDrawingMode = true;
             Canvas.freeDrawingBrush = PencilBrush;
             break;
         };
@@ -98,6 +95,31 @@ export function changeBrush(x) {
             break;
         }
     }
-    GenerateCursor(Canvas);
+    return true
+}
+
+export function changeEraser(x) {
+    switch (x) {
+        case Eraser.Do: {
+            if (!EraserBrush.inverted) return false;
+            EraserAll = false;
+            EraserBrush.inverted = false;
+        }
+        case Eraser.Undo: {
+            if (EraserBrush.inverted) return false;
+            EraserAll = false;
+            EraserBrush.inverted = true;
+            break;
+        };
+        case Eraser.All: {
+            if (EraserAll) return false;
+            EraserAll = true;
+            break;
+        };
+        default: {
+            console.log("TODO: " + x)
+            break;
+        }
+    }
     return true
 }

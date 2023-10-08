@@ -1,3 +1,9 @@
+/**
+ * @typedef {import('fabric')} fabric
+ * Generates a Cursor for the canvas
+ * @function
+ * @name Generate Cursor
+ * @param {fabric.Canvas} Canvas */
 export function GenerateCursor(Canvas) {
     const w = Canvas.freeDrawingBrush.width / 2;
     const canv = document.createElement('canvas');

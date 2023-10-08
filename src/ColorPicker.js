@@ -6,8 +6,19 @@ import { ColorPickerAClass, ColorPickerBId, ColorPickerPosition, ColorPickerThem
 import { BackgroudColorVar } from './Constantes/CSSVar';
 import { PencilMenuId } from './Constantes/JSPath';
 
+/**
+ * Controls colorpciker
+ * @readonly
+ * @constant
+ * @type {Pickr}
+ * @protected*/
 let ColorPicker;
 
+/**
+* Generates the colorpicker and his events
+* @function
+* @name createColorPicker
+* @return void*/
 export function createColorPicker() {
     const SustituteEl = $(ColorPickerBId);
     const defaultColor = SustituteEl.style.getPropertyValue(BackgroudColorVar);
@@ -57,23 +68,43 @@ export function createColorPicker() {
     });*/
 }
 
+/**
+* Changes color when saved in the ColorPicker menu
+* @function
+* @name ColorPickerSavedColor
+* @return void*/
 function ColorPickerSavedColor() {
     const RGBColor = getRBG();
     changeColor(RGBColor);
     ColorPickerUpdateColorCircle(RGBColor);
 }
 
+/**
+* Updates the rectungule BackgroudColorVar when the ColorPicker changes
+* @function
+* @name ColorPickerChangeColor
+* @return void*/
 function ColorPickerChangeColor() {
     const RGBColor = getRBG();
     const Rectangule = $(ColorPickerAClass);
     Rectangule.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
+/**
+* Gets the color of the ColorPicker and formating it in and array of three spaces and output the rgb string
+* @function
+* @name getRBG
+* @return string*/
 function getRBG() {
     const Color = ColorPicker.getColor().toRGBA();
     return `rgb(${Color[0]}, ${Color[1]}, ${Color[2]}, ${Color[3]})`;
 }
 
+/**
+* Hides the ColorPicker
+* @function
+* @name hideColorPicker
+* @return void*/
 export function hideColorPicker() {
     ColorPicker.hide();
 }

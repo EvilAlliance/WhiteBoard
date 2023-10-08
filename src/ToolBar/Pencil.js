@@ -6,6 +6,11 @@ import { BackgroudColorVar } from '../Constantes/CSSVar';
 import { hideColorPicker } from '../ColorPicker';
 import { deleteInterval, showMenu, updateSize } from './Utils';
 
+/**
+* Init Pencil button events of the toolbar
+* @function
+* @name initPencil
+* @return void*/
 export function initPencil() {
     const Pencil = $(PencilButtonId);
     EventListener(Pencil, ['click', 'touchend'], showPenColor);
@@ -22,16 +27,34 @@ export function initPencil() {
     EventListener(Rectangule, ['touchend'], function() { doubletap(changeSavedColor.bind(this)); });
 }
 
+/**
+* Shows menu of the Brush
+* @function
+* @name showPenColor
+* @param {MouseEvent} e 
+* @return void*/
 function showPenColor(e) {
     showMenu(e, PencilMenuId, Brush.Pencil);
 }
 
+/**
+* Select a circle to select a color
+* @function
+* @kind Node clicked
+* @name CirleChangeColor
+* @return void*/
 function CirleChangeColor() {
     const RGBColor = this.style.getPropertyValue(BackgroudColorVar);
     changeColor(RGBColor);
     UpdateColorCircle(this);
 }
 
+/**
+* Changes color of the Brush
+* @function
+* @name changeColor
+* @param {string} RGBColor 
+* @return void*/
 export function changeColor(RGBColor) {
     changePencilBrushColor(RGBColor);
     const actualColorCircle = $(PencilMenuPeview);
@@ -41,6 +64,12 @@ export function changeColor(RGBColor) {
     RangeSize.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
+/**
+* Reorders the circle of the menu when color is selected with ColorPicker
+* @function
+* @name ColorPickerUpdateColorCircle
+* @param {string} RGBColor 
+* @return void*/
 export function ColorPickerUpdateColorCircle(RGBColor) {
     const Circle = $$(PencilMenuSampleColor);
 
@@ -53,6 +82,12 @@ export function ColorPickerUpdateColorCircle(RGBColor) {
     firstCircle.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
+/**
+* Reorders the circle of the menu when color is selected with the circle
+* @function
+* @name UpdateColorCircle
+* @param {HTMLElement} Node Node clicked
+* @return void*/
 export function UpdateColorCircle(Node) {
     let flag = true;
     const RGBColor = Node.style.getPropertyValue(BackgroudColorVar);
@@ -76,6 +111,12 @@ export function UpdateColorCircle(Node) {
     firstCircle.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
+/**
+* Event when rectangule is double clicked
+* @function
+* @name changeSavedColor
+* @kind The rectangule
+* @return void*/
 function changeSavedColor() {
     const RGBColor = this.style.getPropertyValue(BackgroudColorVar);
     changeColor(RGBColor);

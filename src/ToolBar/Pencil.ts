@@ -10,21 +10,22 @@ import { deleteInterval, showMenu, updateSize } from './Utils';
 * Init Pencil button events of the toolbar
 * @function
 * @name initPencil
-* @return void*/
+* @return void
+* */
 export function initPencil() {
-    const Pencil = $(PencilButtonId);
+    const Pencil = $(PencilButtonId) as HTMLElement;
     EventListener(Pencil, ['click', 'touchend'], showPenColor);
     const circlecolors = $$(PencilMenuSampleColor);
     for (const circle of circlecolors) {
         EventListener(circle, ['click', 'touchend'], CirleChangeColor);
     }
-    const inputRange = $(PencilMenuSize);
+    const inputRange = $(PencilMenuSize) as HTMLElement;
     EventListener(inputRange, ['input', 'mousedown'], updateSize);
     EventListener(inputRange, ['mouseup'], deleteInterval);
 
-    const Rectangule = $(ColorPickerAClass);
+    const Rectangule = $(ColorPickerAClass) as HTMLElement;
     EventListener(Rectangule, ['dblclick'], changeSavedColor);
-    EventListener(Rectangule, ['touchend'], function() { doubletap(changeSavedColor.bind(this)); });
+    EventListener(Rectangule, ['touchend'], function(this: HTMLDivElement) { doubletap(changeSavedColor.bind(this)); });
 }
 
 /**
@@ -32,8 +33,9 @@ export function initPencil() {
 * @function
 * @name showPenColor
 * @param {MouseEvent} e 
-* @return void*/
-function showPenColor(e) {
+* @return void
+* */
+function showPenColor(e: Event) {
     showMenu(e, PencilMenuId, Brush.Pencil);
 }
 
@@ -42,8 +44,9 @@ function showPenColor(e) {
 * @function
 * @kind Node clicked
 * @name CirleChangeColor
-* @return void*/
-function CirleChangeColor() {
+* @return void
+* */
+function CirleChangeColor(this: HTMLDivElement) {
     const RGBColor = this.style.getPropertyValue(BackgroudColorVar);
     changeColor(RGBColor);
     UpdateColorCircle(this);
@@ -54,13 +57,14 @@ function CirleChangeColor() {
 * @function
 * @name changeColor
 * @param {string} RGBColor 
-* @return void*/
-export function changeColor(RGBColor) {
+* @return void
+* */
+export function changeColor(RGBColor: string) {
     changePencilBrushColor(RGBColor);
-    const actualColorCircle = $(PencilMenuPeview);
+    const actualColorCircle = $(PencilMenuPeview) as HTMLElement;
     actualColorCircle.style.setProperty(BackgroudColorVar, RGBColor);
 
-    const RangeSize = $(PencilMenuSize);
+    const RangeSize = $(PencilMenuSize) as HTMLElement;
     RangeSize.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
@@ -69,8 +73,9 @@ export function changeColor(RGBColor) {
 * @function
 * @name ColorPickerUpdateColorCircle
 * @param {string} RGBColor 
-* @return void*/
-export function ColorPickerUpdateColorCircle(RGBColor) {
+* @return void
+* */
+export function ColorPickerUpdateColorCircle(RGBColor: string) {
     const Circle = $$(PencilMenuSampleColor);
 
     for (let i = Circle.length - 2; i >= 0; i--) {
@@ -87,8 +92,9 @@ export function ColorPickerUpdateColorCircle(RGBColor) {
 * @function
 * @name UpdateColorCircle
 * @param {HTMLElement} Node Node clicked
-* @return void*/
-export function UpdateColorCircle(Node) {
+* @return void
+* */
+export function UpdateColorCircle(Node: HTMLElement) {
     let flag = true;
     const RGBColor = Node.style.getPropertyValue(BackgroudColorVar);
     const Circle = $$(PencilMenuSampleColor);
@@ -116,8 +122,9 @@ export function UpdateColorCircle(Node) {
 * @function
 * @name changeSavedColor
 * @kind The rectangule
-* @return void*/
-function changeSavedColor() {
+* @return void
+* */
+function changeSavedColor(this: HTMLElement) {
     const RGBColor = this.style.getPropertyValue(BackgroudColorVar);
     changeColor(RGBColor);
     ColorPickerUpdateColorCircle(RGBColor);

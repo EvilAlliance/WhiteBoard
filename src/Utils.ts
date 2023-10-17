@@ -4,8 +4,9 @@
 * @name $
 * @param {string} selector 
 * @param {HTMLElement} [ParentNode=document] = to document
-* @return HTMLELement | null*/
-export function $(selector, ParentNode = document) {
+* @return HTMLELement | null
+* */
+export function $(selector: string, ParentNode: HTMLElement | Document = document) {
     return ParentNode.querySelector(selector);
 }
 
@@ -15,9 +16,11 @@ export function $(selector, ParentNode = document) {
 * @name $$
 * @param {string} selector 
 * @param {HTMLElement} [ParentNode=document] = to document
-* @return HTMLElement[]*/
-export function $$(selector, ParentNode = document) {
-    return ParentNode.querySelectorAll(selector);
+* @return HTMLElement[]
+* */
+export function $$(selector: string, ParentNode: HTMLElement | Document = document) {
+    // @ts-ignore
+    return ParentNode.querySelectorAll(selector) as HTMLElement[];
 }
 
 /**
@@ -27,9 +30,11 @@ export function $$(selector, ParentNode = document) {
 * @param {HTMLElement} Element 
 * @param {string[]} Events 
 * @param {Function} fn 
-* @return void*/
-export function EventListener(Element, Events, fn) {
+* @return void
+* */
+export function EventListener(Element: HTMLElement | Window, Events: (keyof HTMLElementEventMap)[], fn: Function) {
     for (let i = 0; i < Events.length; i++) {
+        // @ts-ignore
         Element.addEventListener(Events[i], fn);
     }
 }
@@ -37,7 +42,8 @@ export function EventListener(Element, Events, fn) {
 /**
  * True when alredy clicked one time
  * type {boolean}
- * @protected*/
+ * @protected
+ * */
 let tapedTwice = false;
 
 /**
@@ -45,8 +51,9 @@ let tapedTwice = false;
 * @function
 * @name doubletap
 * @param {Function} cb 
-* @return boolean*/
-export function doubletap(cb) {
+* @return boolean
+* */
+export function doubletap(cb: Function) {
     if (!tapedTwice) {
         tapedTwice = true;
         setTimeout(function() { tapedTwice = false; }, 300);

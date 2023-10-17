@@ -8,10 +8,11 @@ import { AcctionButtonVar } from '../Constantes/CSSVar';
 * Init events of the tilebar
 * @function
 * @name initTitleBar
-* @return void*/
+* @return void
+* */
 export async function initTitleBar() {
     const isMax = await appWindow.isMaximized();
-    const TitleBar = $(TiltleBarId);
+    const TitleBar = $(TiltleBarId) as HTMLElement;
     const [_, Min, Max] = $$('img', TitleBar);
     Min.style.setProperty(AcctionButtonVar, isMax ? 'unset' : 'none');
     Max.style.setProperty(AcctionButtonVar, isMax ? 'none' : 'unset');
@@ -26,7 +27,8 @@ export async function initTitleBar() {
 * minimize the window
 * @function
 * @name minimize
-* @return void*/
+* @return void
+* */
 function minimize() {
     appWindow.minimize();
 }
@@ -35,12 +37,13 @@ function minimize() {
 * Maximize the screen or minimize it depending of the actual windows state
 * @function
 * @name MaximizeMinimize
-* @return void*/
+* @return void
+* */
 async function MaximizeMinimize() {
     await appWindow.toggleMaximize();
     saveWindowState(StateFlags.ALL);
     const isMax = await appWindow.isMaximized();
-    const TitleBar = $(TiltleBarId);
+    const TitleBar = $(TiltleBarId) as HTMLElement;
     const [_, Min, Max] = $$('img', TitleBar);
     Min.style.setProperty(AcctionButtonVar, isMax ? 'unset' : 'none');
     Max.style.setProperty(AcctionButtonVar, isMax ? 'none' : 'unset');
@@ -50,7 +53,8 @@ async function MaximizeMinimize() {
 * Closes the windwos
 * function
 * @name close
-* @return void*/
+* @return void
+* */
 function close() {
     appWindow.close();
 }

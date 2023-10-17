@@ -7,12 +7,13 @@ import { deleteInterval, showMenu, updateSize } from './Utils';
 * Init Eraser button of toolbar events
 * @function
 * @name initEraser
-* @return void*/
+* @return void
+* */
 export function initEraser() {
-    const Eraser = $(EraserButtonId);
+    const Eraser = $(EraserButtonId) as HTMLElement;
     EventListener(Eraser, ['click', 'touchend'], Erase);
 
-    const inputRange = $(EraserMenuSize);
+    const inputRange = $(EraserMenuSize) as HTMLElement;
     EventListener(inputRange, ['input', 'mousedown'], updateSize);
     EventListener(inputRange, ['mouseup'], deleteInterval);
 
@@ -27,8 +28,9 @@ export function initEraser() {
 * @function
 * @name Erase
 * @param {MouseEvent} e 
-* @return void*/
-function Erase(e) {
+* @return void
+* */
+function Erase(e: Event) {
     showMenu(e, EraserMenuId, Brush.Eraser);
 }
 
@@ -36,10 +38,11 @@ function Erase(e) {
 * Activates the normal eraser
 * @function
 * @name Do
-* @return void*/
+* @return void
+* */
 function Do() {
     changeEraser(Eraser.Do);
-    $(EraserMenuOptionActive).classList.toggle("active");
+    ($(EraserMenuOptionActive) as HTMLElement).classList.toggle("active");
     $$(EraserMenuOptions)[0].classList.toggle("active");
 }
 
@@ -47,10 +50,11 @@ function Do() {
 * Activates the eraser which backtraces what was done by the eraser
 * @function
 * @name Undo
-* @return void*/
+* @return void
+* */
 function Undo() {
     changeEraser(Eraser.Undo);
-    $(EraserMenuOptionActive).classList.toggle("active");
+    ($(EraserMenuOptionActive) as HTMLElement).classList.toggle("active");
     $$(EraserMenuOptions)[1].classList.toggle("active");
 }
 
@@ -58,9 +62,10 @@ function Undo() {
 * Activates the eraser which eraser all the object
 * @function
 * @name ErasesrAll
-* @return void*/
+* @return void
+* */
 function EraserAll() {
     changeEraser(Eraser.All);
-    $(EraserMenuOptionActive).classList.toggle("active");
+    ($(EraserMenuOptionActive) as HTMLElement).classList.toggle("active");
     $$(EraserMenuOptions)[2].classList.toggle("active");
 }

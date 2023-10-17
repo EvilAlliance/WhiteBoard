@@ -4,7 +4,7 @@ import { $, $$, EventListener } from './Utils';
 import { initCanvas, updateCanvas } from './Canvas/Index';
 import { createColorPicker } from './ColorPicker';
 import { initPencil } from './ToolBar/Pencil';
-import { FirstLayerAttribute, ShowMenuClass } from './Constantes/Index';
+import { FirstLayerAttribute } from './Constantes/Index';
 import { FabricUpperCanvasClass } from './Constantes/JSPath';
 import { Layer } from './Constantes/CSSVar';
 import { initEraser } from './ToolBar/Eraser';
@@ -14,7 +14,7 @@ import { resetMenu } from './ToolBar/Utils';
 EventListener(window, ['load'], init);
 EventListener(window, ['resize'], updateWindow);
 EventListener(window, ['mousedown', 'touchstart'], UnderCanvas);
-EventListener(window, ['mouseup', 'touchleave', 'touchend'], UpperCanvas);
+EventListener(window, ['mouseup', 'touchleave', 'touchend'] as (keyof HTMLElementEventMap)[], UpperCanvas);
 EventListener(window, ['keydown'], doShortCut);
 EventListener(window, ['keyup'], undoShortCut);
 
@@ -24,8 +24,9 @@ EventListener(window, ['keyup'], undoShortCut);
 * @function
 * @name UnderCanvas
 * @param {MouseEvent} e 
-* @return void*/
-function UnderCanvas(e) {
+* @return void
+* */
+function UnderCanvas(e: MouseEvent) {
     if (e.target === $(FabricUpperCanvasClass)) {
         const FirstLayer = $$(FirstLayerAttribute);
         for (let i = 0; i < FirstLayer.length; i++) {
@@ -40,8 +41,9 @@ function UnderCanvas(e) {
 * @function
 * @name UnderCanvas
 * @param {MouseEvent} e 
-* @return void*/
-function UpperCanvas(e) {
+* @return void
+* */
+function UpperCanvas(e: MouseEvent) {
     if (e.target === $(FabricUpperCanvasClass)) {
         const FirstLayer = $$(FirstLayerAttribute);
         for (let i = 0; i < FirstLayer.length; i++) {
@@ -54,7 +56,8 @@ function UpperCanvas(e) {
 * Event when the window changes size updates the canvas and saves the size with the window
 * @function
 * @name updateWindow
-* @return void*/
+* @return void
+* */
 function updateWindow() {
     saveState();
     updateCanvas();
@@ -64,7 +67,8 @@ function updateWindow() {
 * Initializes every event and component
 * @function
 * @name init
-* @return void*/
+* @return void
+* */
 function init() {
     initTitleBar();
     initCanvas();
@@ -78,7 +82,8 @@ function init() {
 * Saves the size of the window
 * @function
 * @name saveState
-* @return void*/
+* @return void
+* */
 function saveState() {
     saveWindowState(StateFlags.ALL);
 }
@@ -88,8 +93,9 @@ function saveState() {
 * @function
 * @name doShortCut
 * @param {KeyboardEvent} e 
-* @return void*/
-function doShortCut(e) {
+* @return void
+* */
+function doShortCut(e: KeyboardEvent) {
     //console.log('do', e);
 }
 
@@ -98,7 +104,8 @@ function doShortCut(e) {
 * @function
 * @name undoShortCut
 * @param {KeyboardEvent} e 
-* @return void*/
-function undoShortCut(e) {
+* @return void
+* */
+function undoShortCut(e: KeyboardEvent) {
     //console.log('undo', e);
 }

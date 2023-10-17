@@ -11,16 +11,18 @@ import { PencilMenuId } from './Constantes/JSPath';
  * @readonly
  * @constant
  * @type {Pickr}
- * @protected*/
-let ColorPicker;
+ * @protected
+ * */
+let ColorPicker: Pickr;
 
 /**
 * Generates the colorpicker and his events
 * @function
 * @name createColorPicker
-* @return void*/
+* @return void
+* */
 export function createColorPicker() {
-    const SustituteEl = $(ColorPickerBId);
+    const SustituteEl = $(ColorPickerBId) as HTMLElement;
     const defaultColor = SustituteEl.style.getPropertyValue(BackgroudColorVar);
     ColorPicker = Pickr.create({
         el: ColorPickerBId,
@@ -40,7 +42,7 @@ export function createColorPicker() {
             }
         }
     });
-    const entryButton = $(ColorPickerAClass);
+    const entryButton = $(ColorPickerAClass) as HTMLElement;
     entryButton.style.setProperty(BackgroudColorVar, defaultColor);
 
     ColorPicker
@@ -72,7 +74,8 @@ export function createColorPicker() {
 * Changes color when saved in the ColorPicker menu
 * @function
 * @name ColorPickerSavedColor
-* @return void*/
+* @return void
+* */
 function ColorPickerSavedColor() {
     const RGBColor = getRBG();
     changeColor(RGBColor);
@@ -83,10 +86,11 @@ function ColorPickerSavedColor() {
 * Updates the rectungule BackgroudColorVar when the ColorPicker changes
 * @function
 * @name ColorPickerChangeColor
-* @return void*/
+* @return void
+* */
 function ColorPickerChangeColor() {
     const RGBColor = getRBG();
-    const Rectangule = $(ColorPickerAClass);
+    const Rectangule = $(ColorPickerAClass) as HTMLElement;
     Rectangule.style.setProperty(BackgroudColorVar, RGBColor);
 }
 
@@ -94,7 +98,8 @@ function ColorPickerChangeColor() {
 * Gets the color of the ColorPicker and formating it in and array of three spaces and output the rgb string
 * @function
 * @name getRBG
-* @return string*/
+* @return string
+* */
 function getRBG() {
     const Color = ColorPicker.getColor().toRGBA();
     return `rgb(${Color[0]}, ${Color[1]}, ${Color[2]}, ${Color[3]})`;
@@ -104,7 +109,8 @@ function getRBG() {
 * Hides the ColorPicker
 * @function
 * @name hideColorPicker
-* @return void*/
+* @return void
+* */
 export function hideColorPicker() {
     ColorPicker.hide();
 }

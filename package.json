@@ -18,11 +18,14 @@
     },
     "devDependencies": {
         "@tauri-apps/cli": "1.4.0",
+        "@total-typescript/ts-reset": "^0.5.1",
+        "@types/fabric": "5.3.4",
         "eslint": "8.45.0",
-        "scss": "^0.2.4",
-        "selenium-webdriver": "^4.11.1",
-        "toml": "^3.0.0",
+        "scss": "0.2.4",
+        "selenium-webdriver": "4.13.o",
+        "toml": "3.0.0",
+        "typescript": "^5.2.2",
         "vite": "4.4.4",
-        "vitest": "^0.34.1"
+        "vitest": "0.34.6"
     }
 }

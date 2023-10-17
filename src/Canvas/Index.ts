@@ -1,3 +1,4 @@
+import type { fabric as Tfabric } from './../@types-fabric/index.d.ts';
 import { fabric } from 'fabric';
 import './../../node_modules/fabric/src/mixins/eraser_brush.mixin.js';
 import { GenerateCursor } from './Cursor';
@@ -17,11 +18,11 @@ import { CanvasWhiteboardIdWHash } from '../Constantes/Index';
  * @readonly
  * @protected
  * */
-export const Brush = Object.freeze({
-    Cursor: 0,
-    Eraser: 1,
-    Pencil: 2,
-});
+export const enum Brush {
+    Cursor,
+    Eraser,
+    Pencil,
+};
 
 /**
  * @typedef {Object} Eraser
@@ -37,11 +38,11 @@ export const Brush = Object.freeze({
  * @readonly
  * @protected
  * */
-export const Eraser = Object.freeze({
-    Do: 0,
-    Undo: 1,
-    All: 2,
-});
+export const enum Eraser {
+    Do,
+    Undo,
+    All,
+};
 
 /**
  * Controls upper canvas and the one below (WEB)
@@ -50,7 +51,7 @@ export const Eraser = Object.freeze({
  * @constant
  * @protected
  * */
-let Canvas;
+let Canvas: Tfabric.Canvas;
 /**
  * Is the Eraser of the canvas
  * @readonly
@@ -58,7 +59,7 @@ let Canvas;
  * @constant
  * @protected
  * */
-let EraserBrush;
+let EraserBrush: fabric.EraserBrush;
 /**
  * Is the Pencil of the Canvas
  * @readonly
@@ -66,7 +67,7 @@ let EraserBrush;
  * @constant
  * @protected
  * */
-let PencilBrush;
+let PencilBrush: fabric.PencilBrush;
 /**
  * Indicates if the eraser should erase the whole object
  * @readonly
@@ -74,13 +75,14 @@ let PencilBrush;
  * @constant
  * @protected
  * */
-let EraserAll;
+let EraserAll: boolean;
 
 /**
 * Updates width and heigth of both canvas
 * @function
 * @name updateCanvas
-* @return void*/
+* @return void
+* */
 export function updateCanvas() {
     const { clientHeight, clientWidth } = document.body;
 
@@ -93,7 +95,8 @@ export function updateCanvas() {
 * Init the canvas and event on it and constants related
 * @function
 * @name initCanvas
-* @return void*/
+* @return void
+* */
 export function initCanvas() {
     const { clientHeight, clientWidth } = document.body;
 
@@ -127,8 +130,9 @@ export function initCanvas() {
 * @function
 * @name changeBrushSize
 * @param {number} size
-* @return void*/
-export function changeBrushSize(size) {
+* @return void
+* */
+export function changeBrushSize(size: number) {
     Canvas.freeDrawingBrush.width = size;
     GenerateCursor(Canvas);
 }
@@ -138,13 +142,16 @@ export function changeBrushSize(size) {
 * @function
 * @name changePencilBrushColor
 * @param {string} RGBColor 
-* @return void*/
-export function changePencilBrushColor(RGBColor) {
+* @return void
+* */
+export function changePencilBrushColor(RGBColor: string) {
     PencilBrush.color = RGBColor;
 }
 
+// @ts-ignore
 function EraseAll({ targets }) {
     if (EraserAll) {
+        // @ts-ignore
         targets.forEach(obj => obj.group?.removeWithUpdate(obj) || Canvas.remove(obj));
     }
 }
@@ -154,8 +161,9 @@ function EraseAll({ targets }) {
 * @function
 * @name changeBrush
 * @param {Brush} x 
-* @return boolean*/
-export function changeBrush(x) {
+* @return boolean
+* */
+export function changeBrush(x: Brush) {
     switch (x) {
         case Brush.Cursor: {
             if (!Canvas.isDrawingMode) return false;
@@ -188,13 +196,15 @@ export function changeBrush(x) {
 * @function
 * @name changeEraser
 * @param {Eraser} x 
-* @return boolean*/
-export function changeEraser(x) {
+* @return boolean
+* */
+export function changeEraser(x: Eraser) {
     switch (x) {
         case Eraser.Do: {
             if (!EraserBrush.inverted) return false;
             EraserAll = false;
             EraserBrush.inverted = false;
+            break;
         }
         case Eraser.Undo: {
             if (EraserBrush.inverted) return false;

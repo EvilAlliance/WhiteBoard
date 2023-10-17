@@ -3,11 +3,13 @@
  * Generates a Cursor for the canvas
  * @function
  * @name Generate Cursor
- * @param {fabric.Canvas} Canvas */
-export function GenerateCursor(Canvas) {
+ * @param {fabric.Canvas} Canvas 
+ * @returns void
+ * */
+export function GenerateCursor(Canvas: fabric.Canvas) {
     const w = Canvas.freeDrawingBrush.width / 2;
     const canv = document.createElement('canvas');
-    const ctx = canv.getContext('2d');
+    const ctx = canv.getContext('2d') as CanvasRenderingContext2D;
 
     ctx.canvas.width = w * 2;
     ctx.canvas.height = w * 2;
